@@ -1,0 +1,17 @@
+**Summary of Mid-term Project Document**
+
+The document outlines the requirements for a mid-term project, specifically focused on building a basic AI knowledge assistant. The project is scheduled for Week 3 and has the following key components:
+
+**Project Title:** Building a Basic AI Knowledge Assistant
+
+**Project Description:** The objective of this project is to develop a functional AI assistant that can retrieve and answer questions from both structured and unstructured knowledge sources. This will be achieved using modern AI frameworks, such as LangChain.
+
+**Key Features:**
+
+1. **Interaction with Multiple Data Sources:** The AI assistant will be designed to interact with data from various sources, including:
+	* Uploaded PDFs
+	* Google Sheet knowledge base
+2. **Retrieving and Answering Questions:** The assistant will be capable of retrieving information and answering questions based on the data from the connected sources.
+3. **Utilization of Modern AI Frameworks:** The project will leverage modern AI frameworks like LangChain to build the AI knowledge assistant.
+
+**Overall Objective:** The mid-term project aims to develop a basic AI knowledge assistant that can effectively interact with multiple data sources, retrieve information, and provide answers to questions, demonstrating the application of modern AI frameworks in building intelligent assistants.
