@@ -1,0 +1,48 @@
+**Executive Summary**
+=====================================
+
+### Introduction
+
+This report analyzes a dataset containing information about 30 students, including their demographic characteristics, academic level, and extracurricular activities. The analysis aims to provide insights into the distribution of students across various categories and identify potential trends or patterns.
+
+### Demographic Analysis
+-----------------------
+
+* **Gender Distribution:** The dataset consists of 15 female students (50%) and 15 male students (50%).
+* **Home State Distribution:** The top 5 home states with the most students are:
+	+ California (4 students)
+	+ New York (4 students)
+	+ Massachusetts (3 students)
+	+ South Dakota (2 students)
+	+ North Carolina (2 students)
+* **Class Level Distribution:** The distribution of students across class levels is:
+	+ Freshman (12 students, 40%)
+	+ Sophomore (7 students, 23%)
+	+ Junior (7 students, 23%)
+	+ Senior (4 students, 13%)
+
+### Academic Analysis
+---------------------
+
+* **Major Distribution:** The top 3 majors with the most students are:
+	+ English (8 students, 27%)
+	+ Math (8 students, 27%)
+	+ Physics (6 students, 20%)
+* **Extracurricular Activity Distribution:** The top 5 extracurricular activities with the most students are:
+	+ Drama Club (4 students)
+	+ Basketball (4 students)
+	+ Lacrosse (4 students)
+	+ Baseball (4 students)
+	+ Debate (4 students)
+
+### Trends and Insights
+-----------------------
+
+* **Correlation between Class Level and Major:** There is no apparent correlation between class level and major.
+* **Correlation between Extracurricular Activity and Major:** Students majoring in English are more likely to participate in Drama Club, while students majoring in Math and Physics are more likely to participate in sports such as Lacrosse and Baseball.
+* **Regional Distribution:** Students from California and New York are more likely to participate in extracurricular activities such as Drama Club and Debate.
+
+### Conclusion
+--------------
+
+This analysis provides a comprehensive overview of the student dataset, highlighting trends and patterns in demographic characteristics, academic levels, and extracurricular activities. The findings can be used to inform decisions about student programming, resource allocation, and support services. Further analysis can be conducted to explore additional aspects of the data and identify areas for improvement.
