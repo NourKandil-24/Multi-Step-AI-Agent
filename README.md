@@ -24,4 +24,21 @@ The system follows a sequential orchestration pattern:
 
 ---
 
+## 🚀 Getting Started
 
+### 1. Installation
+To set up the project locally, run:
+```bash
+git clone <your-repository-url>
+cd Final_AI_Agent
+pip install -r requirements.txt
+```
+### 2. Configuration 
+```bash
+Create a file named .env in the root directory (same folder as app.py) and add your API key:
+GROQ_API_KEY=your_groq_api_key_here
+```
+### 3. Usage
+```bash
+streamlit run app.py
+```
