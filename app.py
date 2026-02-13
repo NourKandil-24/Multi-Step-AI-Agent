@@ -88,7 +88,7 @@ elif source_type == "📊 Google Sheets":
         except Exception as e:
             st.error(f"Error connecting to Sheet: {e}")
 
-# 6. STEP 2 & 3: ORCHESTRATION (Individual File Processing)
+
 # 6. STEP 2 & 3: UNIFIED ORCHESTRATION
 if (source_type == "📄 PDF(s) Upload" and uploaded_files) or (source_type == "📊 Google Sheets" and sheet_url):
     
@@ -161,7 +161,7 @@ if "summaries" in st.session_state and st.session_state.summaries:
                 mime="text/plain",
                 key=f"dl_{doc_name}" # Unique key for multiple buttons
             )
-# --- DASHBOARD SECTION ---
+
 # --- DASHBOARD SECTION ---
 # Check if the dictionary 'summaries' exists and is not empty
 if "summaries" in st.session_state and st.session_state.summaries:
