@@ -1,14 +1,27 @@
 # 🤖 Multi-Step AI Agent System
-This project is a fully functional AI agent designed to automate research workflows.
 
-### 🌟 Features
-- **Data Retrieval:** Extracts content from uploaded PDFs.
-- **AI Processing:** Uses GPT-4o-mini to summarize complex data.
-- **Automated Action:** Generates a downloadable report and logs the activity.
-- **UI:** Interactive web interface built with Streamlit.
+A sophisticated AI Orchestration system built with **Streamlit** and **Groq**. This agent handles end-to-end data processing: from retrieving data across various sources (PDF & Google Sheets) to generating executive summaries and automating report exports.
 
-### 🚀 How to Run
-1. Clone the repo.
-2. Install dependencies: `pip install -r requirements.txt`.
-3. Add your `OPENAI_API_KEY` to a `.env` file.
-4. Run: `streamlit run app.py`.
+## 🚀 Key Features
+
+* **Multi-Source Data Retrieval:** Supports unstructured data from **PDFs** and structured data from **Google Sheets**.
+* **High-Speed Inference:** Powered by **Groq** (Llama 3 / Mixtral) for near-instant analysis.
+* **Agentic Orchestration:** Features a Researcher Agent (Extraction) and a Writer Agent (Synthesis).
+* **Automated Action:** Automatically generates, timestamps, and saves text reports to the local file system.
+* **Interactive Dashboard:** Visualizes system performance and data metrics in real-time.
+
+---
+
+## 🛠️ Architecture & Logic
+
+The system follows a sequential orchestration pattern:
+1.  **Ingestion Layer:** Normalizes data from diverse formats into a text stream.
+2.  **Logic Layer:** Validates data length and quality before passing it to the LLM.
+3.  **Synthesis Layer:** Uses professional-grade prompting to transform raw data into executive reports.
+4.  **Action Layer:** Triggers a local file system write and provides a UI download bridge.
+
+
+
+---
+
+
