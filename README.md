@@ -1,44 +1,54 @@
-# 🤖 Multi-Step AI Agent System
+# 🤖 Multi-Source AI Research Agent
 
-A sophisticated AI Orchestration system built with **Streamlit** and **Groq**. This agent handles end-to-end data processing: from retrieving data across various sources (PDF & Google Sheets) to generating executive summaries and automating report exports.
+A sophisticated AI orchestration system built with **Python** and **LangChain**. This agent autonomously retrieves, processes, and analyzes data from three distinct sources: **PDFs**, **Google Sheets**, and **YouTube transcripts**, providing high-fidelity executive summaries and a real-time data dashboard.
 
 ## 🚀 Key Features
-
-* **Multi-Source Data Retrieval:** Supports unstructured data from **PDFs** and structured data from **Google Sheets**.
-* **High-Speed Inference:** Powered by **Groq** (Llama 3 / Mixtral) for near-instant analysis.
-* **Agentic Orchestration:** Features a Researcher Agent (Extraction) and a Writer Agent (Synthesis).
-* **Automated Action:** Automatically generates, timestamps, and saves text reports to the local file system.
-* **Interactive Dashboard:** Visualizes system performance and data metrics in real-time.
-
----
-
-## 🛠️ Architecture & Logic
-
-The system follows a sequential orchestration pattern:
-1.  **Ingestion Layer:** Normalizes data from diverse formats into a text stream.
-2.  **Logic Layer:** Validates data length and quality before passing it to the LLM.
-3.  **Synthesis Layer:** Uses professional-grade prompting to transform raw data into executive reports.
-4.  **Action Layer:** Triggers a local file system write and provides a UI download bridge.
-
-
+* **Multi-Source Ingestion:** Support for unstructured (PDF), structured (Google Sheets), and multimedia (YouTube) data.
+* **LangChain Orchestration:** Utilizes **LCEL (LangChain Expression Language)** to chain prompts and LLMs for consistent, reproducible results.
+* **Groq Inference Engine:** Powered by **Llama 3.3 (70B Versatile)** for ultra-fast, high-quality analysis.
+* **Live Process Logging:** A real-time "Agent Log" that tracks every step of the retrieval and synthesis process.
+* **Insights Dashboard:** Automated NLP analysis featuring word frequency metrics and data profiling.
+* **Dark-Mode UI:** A high-contrast, professional interface built with Streamlit for maximum visibility.
 
 ---
 
-## 🚀 Getting Started
+## 🛠️ Technical Stack
+* **Frontend:** [Streamlit](https://streamlit.io/)
+* **AI Framework:** [LangChain](https://www.langchain.com/)
+* **LLM Provider:** [Groq Cloud](https://groq.com/) (Llama-3.3-70b-versatile)
+* **APIs:** Google Sheets API, YouTube Transcript API
+* **Data Processing:** PyPDF2, Pandas, Regex (NLP)
 
-### 1. Installation
-To set up the project locally, run:
+
+
+---
+
+## 📋 Objectives Met
+1.  **Objective 1 (Retrieval):** Successfully pulls data from cloud APIs (Sheets) and local file uploads.
+2.  **Objective 2 (Orchestration):** Uses a sophisticated LangChain pipeline to handle diverse content types.
+3.  **Objective 3 (Individual Processing):** Files are processed as unique entities before final synthesis.
+4.  **Objective 4 (Visual Dashboard):** Real-time metrics and charts profile the analyzed text data.
+5.  **Objective 5 (Automated Action):** System generates downloadable executive reports.
+6.  **Objective 6 (Reliability):** Implemented error handling for API connections and model decommissioning.
+
+---
+
+## ⚙️ Installation & Setup
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/YOUR_USERNAME/Final_AI_Agent.git](https://github.com/YOUR_USERNAME/Final_AI_Agent.git)
+   cd Final_AI_Agent
+    ```
+
+2. **Install dependencies:**
+    ```bash
+pip install streamlit langchain langchain-groq PyPDF2 youtube-transcript-api st-gsheets-connection pandas
+    ```
+3. **Environment Variables:**
 ```bash
-git clone <your-repository-url>
-cd Final_AI_Agent
-pip install -r requirements.txt
+Set your Groq API key in your system environment or provide it via the app sidebar.
 ```
-### 2. Configuration 
-```bash
-Create a file named .env in the root directory (same folder as app.py) and add your API key:
-GROQ_API_KEY=your_groq_api_key_here
-```
-### 3. Usage
+4. **Run the App:**
 ```bash
 streamlit run app.py
 ```
