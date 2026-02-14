@@ -8,7 +8,7 @@ A sophisticated AI orchestration system built with **Python** and **LangChain**.
 * **Groq Inference Engine:** Powered by **Llama 3.3 (70B Versatile)** for ultra-fast, high-quality analysis.
 * **Live Process Logging:** A real-time "Agent Log" that tracks every step of the retrieval and synthesis process.
 * **Insights Dashboard:** Automated NLP analysis featuring word frequency metrics and data profiling.
-* **Dark-Mode UI:** A high-contrast, professional interface built with Streamlit for maximum visibility.
+
 
 ---
 
@@ -24,12 +24,12 @@ A sophisticated AI orchestration system built with **Python** and **LangChain**.
 ---
 
 ## 📋 Objectives Met
-1.  **Objective 1 (Retrieval):** Successfully pulls data from cloud APIs (Sheets) and local file uploads.
-2.  **Objective 2 (Orchestration):** Uses a sophisticated LangChain pipeline to handle diverse content types.
-3.  **Objective 3 (Individual Processing):** Files are processed as unique entities before final synthesis.
-4.  **Objective 4 (Visual Dashboard):** Real-time metrics and charts profile the analyzed text data.
-5.  **Objective 5 (Automated Action):** System generates downloadable executive reports.
-6.  **Objective 6 (Reliability):** Implemented error handling for API connections and model decommissioning.
+1.  **Retrieval:** Successfully pulls data from cloud APIs (Sheets) and local file uploads.
+2.  **Orchestration:** Uses a sophisticated LangChain pipeline to handle diverse content types.
+3.  **Individual Processing:** Files are processed as unique entities before final synthesis.
+4.  **Visual Dashboard:** Real-time metrics and charts profile the analyzed text data.
+5.  **Automated Action:** System generates downloadable executive reports.
+6.  **Reliability:** Implemented error handling for API connections and model decommissioning.
 
 ---
 
@@ -45,10 +45,10 @@ A sophisticated AI orchestration system built with **Python** and **LangChain**.
 pip install streamlit langchain langchain-groq PyPDF2 youtube-transcript-api st-gsheets-connection pandas
     ```
 3. **Environment Variables:**
-```bash
+    ```bash
 Set your Groq API key in your system environment or provide it via the app sidebar.
-```
+    ```
 4. **Run the App:**
-```bash
+    ```bash
 streamlit run app.py
-```
+    ```
