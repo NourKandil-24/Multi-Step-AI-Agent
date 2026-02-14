@@ -109,47 +109,47 @@ if GROQ_API_KEY:
 
     elif source_type == "🎥 YouTube Video":
         youtube_url = st.text_input("Paste YouTube URL:")
-    if youtube_url:
-        try: # <--- THIS IS THE OUTER TRY
-            video_id_match = re.search(r"(?:v=|\/)([0-9A-Za-z_-]{11}).*", youtube_url)
-            
-            if video_id_match:
-                video_id = video_id_match.group(1)
+        if youtube_url:
+            try:
+                # 1. Extract Video ID
+                import re
+                video_id_match = re.search(r"(?:v=|\/)([0-9A-Za-z_-]{11}).*", youtube_url)
                 
-                # 1. Setup Session
-                import requests
-                from http.cookiejar import MozillaCookieJar
-                session = requests.Session()
-                session.headers.update({
-                    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
-                })
+                if video_id_match:
+                    video_id = video_id_match.group(1)
+                    
+                    # 2. Setup Session with Browser-like Headers
+                    import requests
+                    from http.cookiejar import MozillaCookieJar
+                    session = requests.Session()
+                    session.headers.update({
+                        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+                    })
 
-                # 2. Load Cookies (Inner Try/Except)
-                if os.path.exists('youtube_cookies.txt'):
+                    # 3. Load Cookies if file exists
+                    if os.path.exists('youtube_cookies.txt'):
+                        try:
+                            cj = MozillaCookieJar('youtube_cookies.txt')
+                            cj.load(ignore_discard=True, ignore_expires=True)
+                            session.cookies = cj
+                        except Exception as cookie_err:
+                            st.warning(f"Cookie loading failed: {cookie_err}")
+
+                    # 4. Fetch the Transcript
                     try:
-                        cj = MozillaCookieJar('youtube_cookies.txt')
-                        cj.load(ignore_discard=True, ignore_expires=True)
-                        session.cookies = cj
-                        # If you have an add_log function, use it here, otherwise just print
-                        print("YOUTUBE: Cookies loaded successfully.")
-                    except Exception as cookie_err:
-                        st.warning(f"Cookie loading failed: {cookie_err}")
+                        ytt_api = YouTubeTranscriptApi(http_client=session) 
+                        transcript_data = ytt_api.fetch(video_id)
+                        raw_text = " ".join([t.text for t in transcript_data])
+                        st.success("✅ YouTube Transcript Fetched!")
+                    except Exception as fetch_err:
+                        st.error(f"YouTube Fetch Error: {fetch_err}")
+                        st.info("💡 Try using a Mobile Hotspot if you're getting IP blocked.")
+                
+                else:
+                    st.error("Invalid YouTube URL format.")
 
-                # 3. Fetch Transcript (Inner Try/Except)
-                try:
-                    ytt_api = YouTubeTranscriptApi(http_client=session) 
-                    transcript_data = ytt_api.fetch(video_id)
-                    raw_text = " ".join([t.text for t in transcript_data])
-                    st.success("✅ YouTube Transcript Fetched!")
-                except Exception as fetch_err:
-                    st.error(f"YouTube Fetch Error: {fetch_err}")
-                    st.info("💡 If blocked, try switching to a Mobile Hotspot for a new IP.")
-            
-            else:
-                st.error("Invalid YouTube URL format.")
-
-        except Exception as outer_err: # <--- THIS FIXES THE ERROR
-            st.error(f"General YouTube Error: {outer_err}")
+            except Exception as outer_err:
+                st.error(f"General YouTube Error: {outer_err}")
 
     # --- 3. STEP 2 & 3: LANGCHAIN ORCHESTRATION ---
     if raw_text:
