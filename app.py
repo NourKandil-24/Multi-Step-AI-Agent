@@ -111,16 +111,18 @@ if GROQ_API_KEY:
         youtube_url = st.text_input("Paste YouTube URL:")
         if youtube_url:
             try:
-                # Video ID Extraction
                 video_id_match = re.search(r"(?:v=|\/)([0-9A-Za-z_-]{11}).*", youtube_url)
                 if video_id_match:
                     video_id = video_id_match.group(1)
-                    # 2026 API Instantiation
+                
+                    # Create the API instance
                     ytt_api = YouTubeTranscriptApi() 
-                    transcript_data = ytt_api.fetch(video_id)
-                    # Use attribute access (.text) for snippets
+                
+                    # --- NEW: Tell it to use the cookies file ---
+                    transcript_data = ytt_api.fetch(video_id, cookies='youtube_cookies.txt')
+                
                     raw_text = " ".join([t.text for t in transcript_data])
-                    st.success("✅ Transcript fetched successfully!")
+                    st.success("✅ Logged in via Cookies - Transcript fetched!")
                 else:
                     st.error("Invalid YouTube URL.")
             except Exception as e:
