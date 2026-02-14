@@ -15,8 +15,7 @@ from youtube_transcript_api import YouTubeTranscriptApi
 # --- INITIAL SETUP ---
 st.set_page_config(page_title="Multi-Source AI Agent", layout="wide")
 
-# Professional CSS Styling
-# Professional CSS Styling - Fixed for high contrast visibility
+
 # Dark Mode Styling - White text on Dark background
 st.markdown("""
     <style>
