@@ -127,10 +127,10 @@ if GROQ_API_KEY:
                 st.error(f"YouTube Error: {e}")
 
     # --- 3. STEP 2 & 3: LANGCHAIN ORCHESTRATION ---
-    if raw_text:
+    if raw_text: 
         if st.button("Run Multi-Step Agent Workflow"): #Agent actually processes the data
             st.session_state.logs = []
-            st.session_state.summaries = {}
+            st.session_state.summaries = {} #ensures every time you start a new research, you are working with a clean slate
             
             # LangChain Prompt & Chain
             prompt = ChatPromptTemplate.from_template("Summarize the following content professionally: {content}")
@@ -172,24 +172,24 @@ if GROQ_API_KEY:
         # DASHBOARD LOGIC
         st.divider()
         st.write("### 📊 Agent Insights Dashboard")
-        words = re.findall(r'\w+', raw_text.lower())
-        stop_words = {'the', 'and', 'of', 'to', 'in', 'is', 'it', 'this', 'that', 'with', 'for'}
-        filtered_words = [w for w in words if w not in stop_words and len(w) > 3]
-        word_counts = Counter(filtered_words).most_common(5)
+        words = re.findall(r'\w+', raw_text.lower()) #uses (Regex) to find every single word in your document.
+        stop_words = {'the', 'and', 'of', 'to', 'in', 'is', 'it', 'this', 'that', 'with', 'for'} #ignored words (noise)
+        filtered_words = [w for w in words if w not in stop_words and len(w) > 3] #It only keeps words that: Are not in stop_words list and longer than 3 characters
+        word_counts = Counter(filtered_words).most_common(5) #Frequency Ranker - Top 5 keywords
 
         col1, col2, col3 = st.columns(3)
         with col1:
             st.metric("Chars Analyzed", f"{len(raw_text)}")
             st.metric("Total Words", f"{len(words)}")
         with col2:
-            st.metric("Reliability", "99.2%", delta="0.8%")
+            st.metric("Reliability", "99.2%", delta="0.8%") #target benchmark for UI layout
             st.metric("Keywords", f"{len(set(filtered_words))}")
         with col3:
             st.metric("Speed", "0.9s", delta="-0.2s")
             if word_counts: st.metric("Top Key", f"'{word_counts[0][0]}'")
 
         if word_counts:
-            chart_data = pd.DataFrame(word_counts, columns=['Word', 'Freq'])
+            chart_data = pd.DataFrame(word_counts, columns=['Word', 'Freq']) #bar chart with freq
             st.bar_chart(chart_data.set_index('Word'))
 
 else:
