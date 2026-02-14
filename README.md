@@ -42,13 +42,13 @@ A sophisticated AI orchestration system built with **Python** and **LangChain**.
 
 2. **Install dependencies:**
     ```bash
-pip install streamlit langchain langchain-groq PyPDF2 youtube-transcript-api st-gsheets-connection pandas
+    pip install streamlit langchain langchain-groq PyPDF2 youtube-transcript-api st-gsheets-connection pandas
     ```
 3. **Environment Variables:**
     ```bash
-Set your Groq API key in your system environment or provide it via the app sidebar.
+    Set your Groq API key in your system environment or provide it via the app sidebar.
     ```
 4. **Run the App:**
     ```bash
-streamlit run app.py
+    streamlit run app.py
     ```
