@@ -59,7 +59,7 @@ st.markdown("""
 st.title("🤖 Multi-Step AI Research Agent")
 st.write("Orchestrating intelligence across PDFs, Google Sheets, and YouTube.")
 
-# Helper function for Agent Logs
+# Helper function for Agent Logs , function ensures your Agent's history is preserved
 def add_log(message):
     if "logs" not in st.session_state: st.session_state.logs = []
     timestamp = datetime.now().strftime("%H:%M:%S")
@@ -128,13 +128,13 @@ if GROQ_API_KEY:
 
     # --- 3. STEP 2 & 3: LANGCHAIN ORCHESTRATION ---
     if raw_text:
-        if st.button("Run Multi-Step Agent Workflow"):
+        if st.button("Run Multi-Step Agent Workflow"): #Agent actually processes the data
             st.session_state.logs = []
             st.session_state.summaries = {}
             
             # LangChain Prompt & Chain
             prompt = ChatPromptTemplate.from_template("Summarize the following content professionally: {content}")
-            chain = prompt | llm | StrOutputParser()
+            chain = prompt | llm | StrOutputParser() #langchain pipeline: prompt -> LLM -> string output
 
             log_container = st.expander("🛠️ View Agent Process Logs", expanded=True)
             
@@ -146,14 +146,14 @@ if GROQ_API_KEY:
                         # Individual file text extraction for summary
                         reader = PdfReader(f)
                         f_text = "".join([p.extract_text() for p in reader.pages if p.extract_text()])
-                        summary = chain.invoke({"content": f_text[:15000]})
-                        st.session_state.summaries[f.name] = summary
+                        summary = chain.invoke({"content": f_text[:15000]}) # Limit to 15k chars for LLM not to crash
+                        st.session_state.summaries[f.name] = summary #Agent can manage multiple reports simultaneously without losing data or confusion
                         add_log(f"EXPORT: Saved report for {f.name}")
                 # Process Sheets or YouTube as a single unit
                 else:
                     doc_label = "Google Sheet" if source_type == "📊 Google Sheets" else "YouTube Transcript"
                     add_log(f"ORCHESTRATOR: Processing {doc_label}...")
-                    summary = chain.invoke({"content": raw_text[:20000]})
+                    summary = chain.invoke({"content": raw_text[:20000]}) #massive input handling with 20k char limit
                     st.session_state.summaries[doc_label] = summary
                     add_log(f"EXPORT: Generated {doc_label} summary.")
 
@@ -162,11 +162,11 @@ if GROQ_API_KEY:
                 status.update(label="✅ Workflow Complete!", state="complete")
 
     # --- 4. DISPLAY & DASHBOARD ---
-    if "summaries" in st.session_state and st.session_state.summaries:
+    if "summaries" in st.session_state and st.session_state.summaries: #check summary exists in folder and that it is not empty
         st.write("### 📝 Generated Executive Summaries")
-        for name, summ in st.session_state.summaries.items():
+        for name, summ in st.session_state.summaries.items(): #loop, app to handle unlimited results, create a display for each PDF
             with st.expander(f"📄 Result: {name}", expanded=True):
-                st.markdown(summ)
+                st.markdown(summ) #renders the AI text beautifully
                 st.download_button("Download Report", summ, file_name=f"{name}_Summary.txt", key=f"dl_{name}")
 
         # DASHBOARD LOGIC
