@@ -34,19 +34,20 @@ A sophisticated AI orchestration system built with **Python** and **LangChain**.
 ---
 
 ## ⚙️ Installation & Setup
-1. **Clone the repository:**
+1. **Create a Virtual Environment:**
    ```bash
-   git clone [https://github.com/YOUR_USERNAME/Final_AI_Agent.git](https://github.com/YOUR_USERNAME/Final_AI_Agent.git)
-   cd Final_AI_Agent
+    python -m venv venv 
     ```
 
-2. **Install dependencies:**
+2. **Activate the Environment:**
     ```bash
-    pip install streamlit langchain langchain-groq PyPDF2 youtube-transcript-api st-gsheets-connection pandas
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+    .\venv\Scripts\Activate.ps1   #if using cmd promt: .\venv\Scripts\activate.bat
+    
     ```
-3. **Environment Variables:**
+3. **Install Dependencies:**
     ```bash
-    Set your Groq API key in your system environment or provide it via the app sidebar.
+    pip install -r requirements.txt
     ```
 4. **Run the App:**
     ```bash
